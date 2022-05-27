@@ -71,7 +71,7 @@
       
           <!-- dashboard start -->
           <div class="main-menu-item">
-            <a href="home.php"><i class="fa fa-dashboard"  style="color: #002f6d;"></i><span  style="color: #002f6d;">Accueil</span></a>
+            <a href="/"><i class="fa fa-dashboard"  style="color: #002f6d;"></i><span  style="color: #002f6d;">Accueil</span></a>
           </div>
           <!-- dashboard end -->
           <div id="second" class="main-menu-item" onclick="showhide(this.id);">
@@ -82,8 +82,8 @@
                 </span>
             </a>
             <ul class="treeview-menu" style="display: none;">
-                <li class="treeview"><a href="add_customer.php" style="color: #002f6d;">Ajouter un prestataire</a></li>
-                <li class="treeview"><a href="manage_customer.php" style="color: #002f6d;">Gérer prestataire</a></li>
+                <li class="treeview"><a href="{{ route('ajoupresta') }}" style="color: #002f6d;">Ajouter un prestataire</a></li>
+                <li class="treeview"><a href="{{ route('postulant') }}" style="color: #002f6d;">Gérer prestataire</a></li>
             </ul>
         </div>
         <div id="third" class="main-menu-item" onclick="showhide(this.id);">
@@ -94,7 +94,7 @@
                 </span>
             </a>
             <ul class="treeview-menu" style="display: none;">
-                 <li class="treeview"><a href="pageclient.html" style="color: #002f6d;">Gérer les clients</a></li>
+                 <li class="treeview"><a href="{{ route('client') }}" style="color: #002f6d;">Gérer les clients</a></li>
               </ul>
         </div>
         <!-- client end -->
@@ -146,7 +146,7 @@
           <div class="col col-md-12">
             <hr class="col-md-12" style="padding: 0px; border-top: 2px solid  #deceff;">
           </div>
-       @foreach($clients as $client)
+       @foreach($all as $client)
           <div class="col col-md-12 table-responsive">
             <div class="table-responsive">
             	<table class="table table-bordered table-striped table-hover">
@@ -162,29 +162,34 @@
                     <th style="width: 13%;">{{ $client->prenom}}</</th>
                     <th style="width: 15%;">{{ $client->contact}}</th> 
                   </tr>
-                    
-                  <tr>  
+
+                    <tr>  
             				<th style="width: 13%;">Nom du prestataire</th>
                     <th style="width: 13%;">Prénom du prestataire</th>
                     <th style="width: 15%;">Numéro du prestataire</th>
                     <th style="width: 17%;">Métier du prestataire</th>
                     <th style="width: 15%;">Action</th>
             			</tr>
+                 @foreach($client->prestataires as $prestataire)
+                   
+                
                  
                   <tr>
-                    <th style="width: 17%;"></th>
-                    <th style="width: 13%;"></th>
-                    <th style="width: 17%;"></th>
-                    <th style="width: 17%;"></th> 
+                    <th style="width: 17%;">{{ $prestataire->nom_prest }}</</th>
+                    <th style="width: 13%;">{{ $prestataire->prenom_prest }}</th>
+                    <th style="width: 17%;">{{ $prestataire->contact_prest }}</th>
+                    <th style="width: 17%;">{{ $prestataire->metier_prest }}</th> 
 
-                    <th style="width: 17%;"><button href="" class="btn btn-success btn-sm">
-                      <i class="fa fa-check"></i>
-                      </button> <button class="btn btn-danger btn-sm">
-                        <i class="fa fa-close"></i>
+                    <th style="width: 17%;">
+                      <button href="" class="btn btn-success btn-sm">
+                        <i class="fa fa-check">Valider</i>
                       </button>
+                      <!--button class="btn btn-danger btn-sm">
+                        <i class="fa fa-close"></i>
+                      </!--button-->
                     </th>
-            			</tr>
-                  
+            			</tr> 
+                @endforeach 
                
 
             		</thead>

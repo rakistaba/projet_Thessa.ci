@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\prestataires;
+use App\Models\Prestataire;
 use Illuminate\Support\Facades\Hash;
 
 class InscriPrestaController extends Controller
@@ -11,6 +11,25 @@ class InscriPrestaController extends Controller
     public function inscripresta()
     {
         return view('inscriptionpresta');
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'nom_prest' => ['required', 'string', 'max:255'],
+            'prenom_prest' => ['required', 'string', 'max:255'],
+            'ville_prest' => ['required', 'string', 'max:255'],
+            'contact_prest' => ['required', 'max:255'],
+            'metier_prest' => ['required', 'max:255'],
+            'email_prest' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'langue_prest' => ['required', 'max:255'],
+            'sexe_prest' => ['required', 'max:255'],
+            'age_prest' => ['required', 'max:255'],
+            'imagePath' => ['required'],
+            'domaine_prest' => ['required'],
+            'description_prest' => ['required'],
+            'password_prest' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
     }
 
     public function submit(Request $request)
@@ -21,7 +40,7 @@ class InscriPrestaController extends Controller
         $request->file('image')->move('photo', $photo);
        }
     
-        prestataires::create([
+        Prestataire::create([
             'nom_prest'=>$request->nom,
             'prenom_prest'=>$request->prenom,
             'ville_prest'=>$request->ville,
@@ -39,6 +58,13 @@ class InscriPrestaController extends Controller
 
         return redirect()->back()->with('succes', 'Votre demande a été effectué.');
     }
+
+
+
+ 
+
+
+  
 
    
 }

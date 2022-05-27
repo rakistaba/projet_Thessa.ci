@@ -23,7 +23,7 @@ class CreatePrestatairesTable extends Migration
             $table->string('ville_prest');
             $table->string('email_prest');
             $table->char('password_prest');
-            $table->string('sexe_prest')->nullable();
+            $table->string('sexe_prest');
             $table->integer('age_prest');
             $table->string('imagePath');
             $table->softDeletes();

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -22,7 +23,8 @@
     <body>
 
       <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #deceff;">
-        <a class="navbar-brand" href="#"> <img src="image/WhatsApp Image 2022-03-25 at 14.54.29.jpeg" alt="mon image"></a>
+        <a class="navbar-brand" href="#"> <img src="image/WhatsApp Image 2022-03-25 at 14.54.29.jpeg" alt="mon image">
+      </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,29 +42,31 @@
             <li class="nav-item">
               <a class="nav-link" href="#" style=" width: 85px;color: #002f6d;">A propos</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" style="color: #002f6d;" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ Auth::user()->nom }}
-                  {{ Auth::user()->prenom }} 
-              </a>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" >
-
-                    <a class="dropdown-item" href="{{ route('profile') }}">Mon profile</a>
-                    <a class="dropdown-item" href="{{ route('selection') }}" >Mes selections</a>
-
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                            {{ __('Deconnexion') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                         @csrf
-                    </form>
-                </div>
+            <li class="nav-item">
+               <a class="nav-link" href="{{ route('selection') }}" style=" width: 90px;color: #002f6d;">Selections</a>
             </li>
+            <li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" style="color: #002f6d;text-transform:capitalize;" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{ Auth::user()->nom }}
+    {{ Auth::user()->prenom }} 
+</a>
+  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" >
+
+      <a class="dropdown-item" href="{{ route('profile') }}">Mon profile</a>
+
+      <a class="dropdown-item" href="{{ route('logout') }}"
+          onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();">
+              {{ __('Deconnexion') }}
+      </a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+           @csrf
+      </form>
+  </div>
+</li>
             </ul>
-        </div>
-    </nav>
+          </div>
+        </nav>
 <div class="container" >
 <div class="wrapper">
   <ul class="dynamic-txts">
@@ -88,12 +92,12 @@
                 <div class="input-group-prepend">
                   <select id="categorie" name="categorie" class="form-control">
                     <option selected="selected" value="0">Categorie</option>
-                      <option value="">Servante</option>
-                      <option value="">Nounou</option>
-                      <option value="">Chauffeur</option>
-                      <option value="">Technicien de surface</option>
-                      <option value="">Serveur</option>
-                      <option value="">Serveuse</option>
+                      <option value="Servante">Servante</option>
+                      <option value="Nounou">Nounou</option>
+                      <option value="Chauffeur">Chauffeur</option>
+                      <option value="Technicien de surface">Technicien de surface</option>
+                      <option value="Serveur">Serveur</option>
+                      <option value="Serveuse">Serveuse</option>
                     </select>
                   </select>
                 </div>
@@ -258,129 +262,27 @@
               </div>
             </fieldset>
           </form>
-        </div>
 
-@foreach ($prests as $prest)
-  <div class="row ">
+        </div>
+  
+  <div class="row " style="margin-left:80px;">
+  @foreach ($prests as $prest)
     <div class="col-md-12 col-sm-6 col-lg-3">
-      <img src="{{asset('photo'.'/'.$prest->imagePath)}}" style="width:120px;" name="image">
-        <div class="caption">
-            <h4>{{ $prest->nom_prest }}</h4>
-            <h4>{{ $prest->prenom_prest }}</h4>
+      <img src="{{asset('photo'.'/'.$prest->imagePath)}}" style="width:120px;" name="image"/>
+      <div class="caption">
+            <h4 style="text-transform: capitalize;">{{ $prest->nom_prest }}</h4>
+            <h4 style="text-transform: capitalize;">{{ $prest->prenom_prest }}</h4>
             <p>{{ $prest->metier_prest }}</p>
+            <p>{{ $prest->ville_prest }}</p>  
         <div class="lower-container">
             <a href="{{ route('voirprofile_view',$prest->id) }}" class="btn">Voir profile</a>
             <!--a href="#" class="btn">Recruter</!--a-->
         </div>
+      </div>
+
     </div>
-  </div>
 @endforeach
-{{-- <div class="col-md-12 col-sm-6 col-lg-3">
-<img src="images/logo.jpg"/>
-<div class="caption">
-<h4>Evariste toma</h4>
-<p>technicien de surface</p>
-<p>Abidjan</p>
-<div class="lower-container">
-        <a href="{{ route('voirprofile') }}" class="btn">Voir profile</a>
-        <a href="#" class="btn">Recruter</a>
-</div>
-</div>
 
-</div>
-<div class="col-md-12 col-sm-6 col-lg-3">
-  <img src="images/logo.jpg"/>
-  <div class="caption">
-    <h4>Evariste toma</h4>
-    <p>technicien de surface</p>
-    <p>Abidjan</p>
-    <div class="lower-container">
-        <a href="{{ route('voirprofile') }}" class="btn">Voir profile</a>
-        <a href="#" class="btn">Recruter</a>
-</div>
-  </div>
-
-
-</div>
-<div class="col-md-12 col-sm-6 col-lg-3">
-  <img src="images/logo.jpg"/>
-  <div class="caption">
-    <h4>Evariste toma</h4>
-    <p>technicien de surface</p>
-    <p>Abidjan</p>
-    <div class="lower-container">
-        <a href="{{ route('voirprofile') }}" class="btn">Voir profile</a>
-        <a href="#" class="btn">Recruter</a>
-</div>
-  </div>
-
-
-</div>
-<div class="col-md-12 col-sm-6 col-lg-3">
-  <img src="images/logo.jpg"/>
-  <div class="caption">
-    <h4>Evariste toma</h4>
-    <p>technicien de surface</p>
-    <p>Abidjan</p>
-    <div class="lower-container">
-        <a href="{{ route('voirprofile') }}" class="btn">Voir profile</a>
-        <a href="#" class="btn">Recruter</a>
-</div>
-  </div>
-</div>
-<div class="col-md-12 col-sm-6 col-lg-3">
-  <img src="images/logo.jpg"/>
-  <div class="caption">
-    <h4>Evariste toma</h4>
-    <p>technicien de surface</p>
-    <p>Abidjan</p>
-    <div class="lower-container">
-        <a href="{{ route('voirprofile') }}" class="btn">Voir profile</a>
-        <a href="#" class="btn">Recruter</a>
-</div>
-  </div>
-
-
-</div>
-<div class="col-md-12 col-sm-6 col-lg-3">
-  <img src="images/logo.jpg"/>
-  <div class="caption">
-    <h4>Evariste toma</h4>
-    <p>technicien de surface</p>
-    <p>Abidjan</p>
-    <div class="lower-container">
-        <a href="{{ route('voirprofile') }}" class="btn">Voir profile</a>
-        <a href="#" class="btn">Recruter</a>
-</div>
-  </div>
-
-
-</div>
-<div class="col-md-12 col-sm-6 col-lg-3">
-  <img src="images/logo.jpg"/>
-  <div class="caption">
-    <h4>Evariste toma</h4>
-    <p>technicien de surface</p>
-    <p>Abidjan</p>
-    <div class="lower-container">
-        <a href="{{ route('voirprofile') }}" class="btn">Voir profile</a>
-        <a href="#" class="btn">Recruter</a>
-</div>
-  </div>
-
-
-</div>
-<div class="col-md-12 col-sm-6 col-lg-3">
-  <img src="images/logo.jpg"/>
-  <div class="caption">
-    <h4>Evariste toma</h4>
-    <p>technicien de surface</p>
-    <p>Abidjan</p>
-    <div class="lower-container">
-        <a href="{{ route('voirprofile') }}" class="btn">Voir profile</a>
-        <a href="#" class="btn">Recruter</a>
-</div>
-  </div> --}}
 
 
 </div>

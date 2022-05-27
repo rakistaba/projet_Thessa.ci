@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\softDeletes;
 
-use App\Models\Prestataires;
+use App\Models\Prestataire;
 
 class User extends Authenticatable
 {
@@ -52,11 +52,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function administrateurs(){
-        return $this->hasMany(Administrateurs::class);
-    }
-
     public function prestataires() {
-        return $this->belongsToMany(Prestataires::class, 'client_prestataire', 'client_id', 'prestataire_id');
+        return $this->belongsToMany(Prestataire::class);
     }
 }

@@ -70,7 +70,7 @@
       
             <!-- dashboard start -->
             <div class="main-menu-item">
-              <a href="home.php"><i class="fa fa-dashboard"  style="color: #002f6d;"></i><span  style="color: #002f6d;">Accueil</span></a>
+              <a href="/"><i class="fa fa-dashboard"  style="color: #002f6d;"></i><span  style="color: #002f6d;">Accueil</span></a>
             </div>
             <!-- dashboard end -->
       
@@ -83,8 +83,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu" style="display: none;">
-                    <li class="treeview"><a href="ajouterprestataire.html" style="color: #002f6d;">Ajouter un prestataire</a></li>
-                    <li class="treeview"><a href="prestataire.html" style="color: #002f6d;">Gérer prestataire</a></li>
+                    <li class="treeview"><a href="{{ route('ajoupresta') }}" style="color: #002f6d;">Ajouter un prestataire</a></li>
+                    <li class="treeview"><a href="{{ route('postulant') }}" style="color: #002f6d;">Gérer prestataire</a></li>
                 </ul>
             </div>
             <!-- customer end -->
@@ -98,7 +98,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu" style="display: none;">
-                     <li class="treeview"><a href="pageclient.html" style="color: #002f6d;">Gérer les clients</a></li>
+                     <li class="treeview"><a href="{{ route('client') }}" style="color: #002f6d;">Gérer les clients</a></li>
                   </ul>
             </div>
             <!-- client end -->

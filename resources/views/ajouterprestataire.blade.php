@@ -72,7 +72,7 @@
     
         <!-- dashboard start -->
         <div class="main-menu-item">
-          <a href="home.php"><i class="fa fa-dashboard"  style="color: #002f6d;"></i><span  style="color: #002f6d;">Accueil</span></a>
+          <a href="/"><i class="fa fa-dashboard"  style="color: #002f6d;"></i><span  style="color: #002f6d;">Accueil</span></a>
         </div>
         <!-- dashboard end -->
         <div id="second" class="main-menu-item" onclick="showhide(this.id);">
@@ -83,8 +83,8 @@
             </span>
         </a>
         <ul class="treeview-menu" style="display: none;">
-            <li class="treeview"><a href="ajouterprestataire.html" style="color: #002f6d;">Ajouter un prestataire</a></li>
-            <li class="treeview"><a href="#" style="color: #002f6d;">Gérer prestataire</a></li>
+            <li class="treeview"><a href="{{ route('ajoupresta') }}" style="color: #002f6d;">Ajouter un prestataire</a></li>
+            <li class="treeview"><a href="{{ route('postulant') }}" style="color: #002f6d;">Gérer prestataire</a></li>
         </ul>
     </div>
     <div id="third" class="main-menu-item" onclick="showhide(this.id);">
@@ -95,7 +95,7 @@
             </span>
         </a>
         <ul class="treeview-menu" style="display: none;">
-             <li class="treeview"><a href="pageclient.html" style="color: #002f6d;">Gérer les clients</a></li>
+             <li class="treeview"><a href="{{ route('client') }}" style="color: #002f6d;">Gérer les clients</a></li>
           </ul>
     </div>
   </div> <!-- card-body class -->
@@ -133,16 +133,21 @@
           <div class="row col col-md-6">
             <!-- customer details content -->
 <!-- customer name control -->
+@if( Session::get('succes'))
+    <div class="alert alert-succes">{{Session::get('succes')}}  </div>
+@endif
+<form action="{{ route('ajoupresta_submit') }}" method="POST" enctype="multipart/form-data">
+    @csrf
 <div class="row col col-md-12">
     <div class="col col-md-12 form-group">
       <label class="font-weight-bold" for="name">Nom du prestataire :</label>
-      <input type="text" class="form-control" placeholder="Nom" id="name">
+      <input type="text" class="form-control" placeholder="Nom" id="name" name="nom">
        </div>
   </div>
   <div class="row col col-md-12">
     <div class="col col-md-12 form-group">
       <label class="font-weight-bold" for="prenom">Prénoms du prestataire :</label>
-      <input type="text" class="form-control" placeholder="Prénoms" id="prenom">
+      <input type="text" class="form-control" placeholder="Prénoms" id="prenom" name="prenom">
        </div>
   </div>
   
@@ -150,46 +155,46 @@
   <div class="row col col-md-12">
     <div class="col col-md-12 form-group">
       <label class="font-weight-bold" for="number">Contact du prestataire :</label>
-      <input type="number" class="form-control" placeholder="Contact" id="number">
+      <input type="number" class="form-control" placeholder="Contact" id="number" name="contact">
        </div>
   </div>
   <div class="row col col-md-12">
     <label for=""class="font-weight-bold"style="margin-left: 15px;">Domaine de préférence :</label>
       
-    <div class="col col-md-12 form-group">
-      <label  for="maison">Maison</label>
-        <input type="checkbox" name="maison" id="categories" style="margin-right: 10px;">
-        <label  for="hotel">Hotel</label>
-        <input type="checkbox" name="hotel" id="categories"style="margin-right: 10px;">
-        <label  for="restaurant">Les Restaurants</label>
-        <input type="checkbox" name="restaurant" id="categories"style="margin-right: 10px;">
-       
-        <label  for="bar_maquis">Bar-maquis</label>
-        <input type="checkbox" name="bar_maquis" id="categories"style="margin-right: 10px;">
-         <label  for="grandes_surfaces">Grandes surfaces</label>
-        <input type="checkbox" name="grandes_surfaces" id="categories"style="margin-right: 10px;">
-        <label  for="evenements_fetes">Evènements-fêtes</label>
-        <input type="checkbox" name="evenements_fetes" id="categories"style="margin-right: 10px;">
-        </div>
+     <div class="col col-md-12 form-group">
+        <label  for="maison">Maison</label>
+          <input type="checkbox" value="maison"  name="domaine[]" id="categories" >
+          <label  for="hotel">Hotel</label>
+          <input type="checkbox" value="hotel" name="domaine[]" id="categories">
+          <label  for="restaurant">Les Restaurants</label>
+          <input type="checkbox" value="restaurants" name="domaine[]" id="categories">
+         
+          <label  for="bar_maquis">Bar-maquis</label>
+          <input type="checkbox" value="bar-maquis" name="domaine[]" id="categories">
+           <label  for="grandes_surfaces">Grandes surfaces</label>
+          <input type="checkbox" value="grandes surfaces" name="domaine[]" id="categories">
+          <label  for="evenements_fetes">Evènements-fêtes</label>
+          <input type="checkbox" value="évènements-fêtes" name="domaine[]" id="categories">
+          </div>
   </div>
   <div class="row col col-md-12">
     <div class="col col-md-12 form-group">
       <label class="font-weight-bold" for="metier">Metier :</label>
-      <select name="metier"class="form-control" id="metier">
+      <select name="metier" class="form-control" id="metiers">
         <option value="#"></option>
-        <option value="">Servante</option>
-        <option value="">Nounou</option>
-        <option value="">Chauffeur</option>
-        <option value="">Technicien de surface</option>
-        <option value="">Serveur</option>
-        <option value="">Serveuse</option>
+        <option value="Servante">Servante</option>
+        <option value="Nounou">Nounou</option>
+        <option value="Chauffeur">Chauffeur</option>
+        <option value="Technicien de surface">Technicien de surface</option>
+        <option value="Serveur">Serveur</option>
+        <option value="Serveuse">Serveuse</option>
       </select>
-       </div>
+    </div>
   </div>
   <div class="row col col-md-12">
     <div class="col col-md-12 form-group">
       <label class="font-weight-bold" for="langues">Langues ou ethnies :</label>
-      <input type="text" class="form-control" placeholder="Langues ou ethnies" id="langues">
+      <input type="text" class="form-control" placeholder="Langues ou ethnies" id="langues" name="langue">
        </div>
   </div>
   
@@ -370,59 +375,60 @@
   <div class="row col col-md-12">
     <div class="col col-md-12 form-group">
       <label class="font-weight-bold" for="image">Image :</label>
-      <input type="file" class="form-control" name="image" id="image">
+      <input type="file" class="form-control" name="image" id="image" name="image">
         </div>
   </div>
   
-  
-  <div class="col-md-12 form-group form-inline">
+  <div class="row col-md-12">
+  <div class="col-md-12 form-group ">
     <label class="font-weight-bold" for="date">Age :&emsp;</label>
-    <input type="number" class="form-control" id="age"style="width: 93%; height: 80%;">
+    <input type="number" class="form-control" id="age" name="age">
    </div>
   </div>
   <div class="row col col-md-12">
     <div class="col col-md-12 form-group">
       <label class="font-weight-bold" for="email">Email :</label>
-      <input type="email" class="form-control" name="email" id="email">
+      <input type="email" class="form-control" name="email" id="email" name="email">
         </div>
   </div>
-</div>
-<div class="row col col-md-12">
+  <div class="row col col-md-12">
   <div class="col col-md-12 form-group">
     <label class="font-weight-bold" for="passe">Mot de passe :</label>
-    <input type="text" class="form-control" name="passe" id="passe">
+    <input type="password" class="form-control"  id="passe" name="password">
       </div>
 </div>
-</div>
+
 <div class="row col col-md-12">
   <div class="col col-md-12 form-group">
     <label class="font-weight-bold" for="image">Confirmer mot de passe :</label>
-    <input type="text" class="form-control" name="passe" id="passe">
+    <input type="password" class="form-control" name="password" id="passe">
       </div>
 </div>
    <div class="col-md-12 form-group form-inline">
     <label class="font-weight-bold" for="description">Description :&emsp;</label>
     <textarea name="description"class="form-control" style="width: 93%;" id="description" cols="30" rows="4"></textarea>
    </div>
-  
-  <!-- horizontal line -->
-  <div class="col col-md-12">
-    <hr class="col-md-12 float-left" style="padding: 0px; width: 95%; border-top: 2px solid  #deceff;">
-  </div>
-  
-  <!-- form submit button -->
-  <div class="row col col-md-12">
+   <div class="row col col-md-12">
     &emsp;
     <div class="form-group m-auto">
       <button class="btn " style="background-color:#deceff;color:#002f6d; font-weight: bold;">Ajouter</button>
     </div>
-    <!--
-    &emsp;
-    <div class="form-group">
-      <button class="btn btn-success form-control">Save and Add Another</button>
-    </div>
-    -->
   </div>
+  </form>
+</div>
+<div class="col col-md-12">
+    <hr class="col-md-12 float-left" style="padding: 0px; width: 95%; border-top: 2px solid  #deceff;">
+  </div>
+  
+  <!-- form submit button -->
+  
+  
+</div>
+  
+  </div>
+  
+  <!-- horizontal line -->
+  
   <!-- result message -->
   <div id="customer_acknowledgement" class="col-md-12 h5 text-success font-weight-bold text-center" style="font-family: sans-serif;"></div>
   

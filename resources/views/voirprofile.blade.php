@@ -22,10 +22,7 @@
       <ul class="navbar-nav mr-auto">
         
         <li class="nav-item active">
-          <a class="nav-link" href="#" style="color: #002f6d;">Accueil <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="#" style="color: #002f6d;width:126px">Mes selections</a>
+          <a class="nav-link" href="{{ route('home') }}" style="color: #002f6d;">Accueil <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" style=" width:133px;color: #002f6d;">Contactez-nous</a>
@@ -33,21 +30,36 @@
         <li class="nav-item">
           <a class="nav-link" href="#" style=" width: 90px;color: #002f6d;">A propos</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img class="profile-user-img img-fluid img-circle client_picture" style=" width: 20px;clip-path: circle();" src="#" alt="">
-           Evariste tian
-            </a>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: #deceff;">
-            <a class="dropdown-item" href="#">Profile</a>
-           <a class="dropdown-item" href="#" > Deconnecter</a>
-                 
-            </div>
-          </li>
-        </ul>
+        <li class="nav-item">
+               <a class="nav-link" href="{{ route('selection') }}" style=" width: 90px;color: #002f6d;">Selections</a>
+        </li>
+       <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" style="color: #002f6d; text-transform:capitalize;" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ Auth::user()->nom }}
+                  {{ Auth::user()->prenom }} 
+              </a>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" >
+
+                    <a class="dropdown-item" href="{{ route('profile') }}">Mon profile</a>
+
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                            {{ __('Deconnexion') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                         @csrf
+                    </form>
+                </div>
+            </li>
+      </ul>
       </div>
     </nav>
+  <div >
+    @if(Session::get('recruter'))
+       <p style="background:#deceff; width:50%; height:30px; margin-left:200px;">{{Session::get('recruter')}}</p>
+    @endif
+  </div>
   <div class="container">
     <div class="row" >
     <div class="col-12 col-md-12 col-lg-4">
@@ -88,7 +100,7 @@
                  
             </div>
         </div><div class="social_media">
-          <form action="{{ route('selection_add',$prest->id) }}" method="POST" >
+          <form action="{{ route('voirprofile_add',$prest->id) }}" method="POST" >
             @csrf
             <input type="submit" value="Recruter" class="btn">
             

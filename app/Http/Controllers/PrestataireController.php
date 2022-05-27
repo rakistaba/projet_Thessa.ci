@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\prestataires;
+use App\Models\Prestataire;
 use App\Models\softDeletes;
 
 class PrestataireController extends Controller
 {
     public function prestataire()
     {
-        $prests=prestataires::withTrashed()->oldest('nom_prest')->get();
+        $prests=Prestataire::withTrashed()->oldest('nom_prest')->get();
         return view('prestataire',compact('prests'));
     }
 
-    public function destroy(prestataires $prest)
+    public function destroy(Prestataire $prest)
     {
         $prest->delete();
         return redirect()->back()->with('info', 'Le prestataire a bien été mise dans la corbeille.');
@@ -22,13 +22,13 @@ class PrestataireController extends Controller
 
     public function forceDestroy($id)
     {
-        prestataires::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
+        Prestataire::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
         return redirect()->back()->with('info', 'Le prestataire a bien été supprimé définitivement.');
     }
     
     public function restore($id)
     {
-        prestataires::withTrashed()->whereId($id)->firstOrFail()->restore();
+        Prestataire::withTrashed()->whereId($id)->firstOrFail()->restore();
         return redirect()->back()->with('info', 'Le prestataire a bien été restauré.');
     }
 

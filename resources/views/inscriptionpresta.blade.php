@@ -10,7 +10,7 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #deceff;">
-    <a class="navbar-brand" href="#"> <img src="../image/WhatsApp Image 2022-03-25 at 14.54.29.jpeg" alt="mon image">
+    <a class="navbar-brand" href=""> <img src="../image/WhatsApp Image 2022-03-25 at 14.54.29.jpeg" alt="mon image">
   </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
       <ul class="navbar-nav mr-auto">
         
         <li class="nav-item active">
-          <a class="nav-link" href="#" style="color: #002f6d;">Accueil <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{{ route('home') }}" style="color: #002f6d;">Accueil <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" style=" width:133px;color: #002f6d;">Contactez-nous</a>
@@ -30,7 +30,7 @@
           <a class="nav-link" href="#" style=" width: 90px;color: #002f6d;">A propos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="connexion.html" style=" width: 90px;color: #002f6d;">Connexion</a>
+          <a class="nav-link" href="{{ route('login') }}" style=" width: 90px;color: #002f6d;">Connexion</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" style="color: #002f6d;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -38,8 +38,8 @@
             </a>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: #deceff;">
-            <a class="dropdown-item" href="inscriptionclient.html">Client</a>
-           <a class="dropdown-item" href="index.html" > Prestataire</a>
+            <a class="dropdown-item" href="{{ route('register') }}">Client</a>
+           <a class="dropdown-item" href="{{ route('inscriptionpresta') }}" > Prestataire</a>
                  
             </div>
           </li>
@@ -63,7 +63,7 @@
        </div>  
         <div class="inputfield">
           <label>Prénoms</label>
-          <input type="text" class="input" id="prenoms" name="prenom">
+          <input type="text" class="input" id="prenom" name="prenom">
        </div>
        <div class="inputfield">
         <label>Contact</label>

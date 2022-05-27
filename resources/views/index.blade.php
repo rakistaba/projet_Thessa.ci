@@ -268,7 +268,7 @@
             <p>{{ $prest->metier_prest }}</p>
             <p>{{ $prest->ville_prest }}</p>  
         <div class="lower-container">
-            <a href="{{ route('voirprofile_view',$prest->id) }}" class="btn">Voir profile</a>
+            <a href="{{ route('login') }}" class="btn">Voir profile</a>
             <!--a href="#" class="btn">Recruter</!--a-->
         </div>
       </div>

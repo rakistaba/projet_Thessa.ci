@@ -27,13 +27,16 @@
           <ul class="navbar-nav mr-auto">
             
             <li class="nav-item active">
-              <a class="nav-link" href="#" style="color: #002f6d;">Accueil <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{ route('home') }}" style="color: #002f6d;">Accueil <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" style=" width:133px;color: #002f6d;">Contactez-nous</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" style=" width: 90px;color: #002f6d;">A propos</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="{{ route('selection') }}" style=" width: 90px;color: #002f6d;">Selections</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,7 +47,6 @@
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" >
 
                     <a class="dropdown-item" href="{{ route('profile') }}">Mon profile</a>
-                    <a class="dropdown-item" href="{{ route('selection') }}" >Mes selections</a>
 
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
@@ -73,12 +75,13 @@
                       <th style="width: 15%;">Ville</th>
                       <th style="width: 17%;">Action</th>
                     </tr>
+
+                  @foreach($client->prestataires as $prestataire)
                     <tr>
-                        
-                      <th style="width: 13%;">{{ $prest->nom_prest }}</th>
-                      <th style="width: 13%;">{{ $prest->prenom_prest }}</th>
-                      <th style="width: 17%;">{{ $prest->metier_prest }}</th>
-                      <th style="width: 15%;">{{ $prest->ville_prest }}</th>
+                      <th style="width: 17%;">{{ $prestataire->nom_prest }}</</th>
+                      <th style="width: 13%;">{{ $prestataire->prenom_prest }}</th>
+                      <th style="width: 17%;">{{ $prestataire->metier_prest }}</th>
+                      <th style="width: 17%;">{{ $prestataire->ville_prest }}</th>
                 
                       <th style="width: 17%;">
                         <button href="" class="btn btn-success btn-sm">
@@ -88,8 +91,8 @@
                           <i class="fa fa-close"></i>
                         </button>
                       </th>
-                
                     </tr>
+                  @endforeach
                 </thead>
                 <tbody id="customers_div">
                 </tbody>

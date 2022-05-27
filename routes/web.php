@@ -33,6 +33,7 @@ Route::get('/', [IndexController::class, 'index']);
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 
 Route::get('/ajoupresta', [AjouPrestaController::class, 'ajoupresta'])->name('ajoupresta');
+Route::post('/ajoupresta', [AjouPrestaController::class, 'submit'])->name('ajoupresta_submit');
 
 Route::get('/changepass', [ChangePassController::class, 'changepass'])->name('changepass');
 
@@ -49,13 +50,14 @@ Route::post('/prestataire_restore/{prest}', [PrestataireController::class,'resto
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
 
 Route::get('/selection', [SelectionController::class, 'selection'])->name('selection');
-Route::post('/selection/{prest}', [SelectionController::class, 'selection'])->name('selection_add');
+Route::post('/selection/{prest}', [VoirProfileController::class, 'ajouter'])->name('selection_add');
 
 Route::get('/tableau', [TableauController::class, 'tableau'])->name('tableau');
-Route::post('/tableau/{prest}', [TableauController::class, 'tableau'])->name('tableau_add');
+Route::post('/tableau/{prest}', [TableauController::class, 'add'])->name('tableau_add');
 
 
 Route::get('/voirprofile/{prest}', [VoirProfileController::class, 'voirprofile'])->name('voirprofile_view');
+Route::post('/voirprofile/{prest}', [VoirProfileController::class, 'submit'])->name('voirprofile_add');
 
 Route::get('/connexion', [ConnexionController::class, 'connexion'])->name('connexion');
 

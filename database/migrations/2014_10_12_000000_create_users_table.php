@@ -15,7 +15,6 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-           // $table->foreignId('administrateur_id')->onDelete('restrict')->onUpdate('restrict')->nullable();
             $table->string('nom');
             $table->string('prenom');
             $table->string('ville');

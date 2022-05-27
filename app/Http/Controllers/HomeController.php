@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\prestataires;
+use App\Models\Prestataire;
 use App\Models\User;
 
 class HomeController extends Controller
@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $prests=prestataires::get();
+        $prests=Prestataire::get();
         return view('home', compact('prests'));
     }
 }
